@@ -5,7 +5,7 @@ if __name__ == '__main__':
 	board = Arduino('/dev/ttyACM0')
 	print("Success")
 
-	echo = board.get_pin('d:7:o')
-
-	while True:
-		print(echo.ping())
+	with board:
+		while True:
+			print(board.analog[0].read())
+			time.sleep(1)
