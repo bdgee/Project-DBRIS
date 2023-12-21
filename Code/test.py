@@ -2,7 +2,7 @@ import time
 import pyfirmata
 
 if __name__ == '__main__':
-	board = pyfirmata.Arduino('')
+	board = pyfirmata.Arduino('/dev/ttyACM0')
 	print("Success")
 	
 	while True:
