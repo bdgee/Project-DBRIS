@@ -1,4 +1,12 @@
 import time
+import pyfirmata
 
-for i in range(1000):
-    print('i really want to die squared')
+if __name__ == '__main__':
+	board = pyfirmata.Arduino('')
+	print("Success")
+	
+	while True:
+		board.digital[13].write(1)
+		time.sleep(1)
+		board.digital[13].write(0)
+		time.sleep(1)
