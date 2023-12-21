@@ -1,5 +1,4 @@
 import time
-import pyfirmata
 from pyfirmata import *
 
 if __name__ == '__main__':
