@@ -1,5 +1,5 @@
 import time
-from pyfirmata import *
+import pyfirmata
 
 if __name__ == '__main__':
 	board = pyfirmata.Arduino('/dev/ttyACM0')
