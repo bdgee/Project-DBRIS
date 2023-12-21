@@ -8,8 +8,6 @@ if __name__ == '__main__':
 	echo = board.get_pin('d:11:i')
 	trig = board.get_pin('d:12:o')
 	LED = board.get_pin('d:13:o')
-	
-	
 
 	while True:
 		board.digital[13].write(1)
