@@ -1,8 +1,9 @@
 import time
 import pyfirmata
+from pyfirmata import *
 
 if __name__ == '__main__':
-	board = pyfirmata.Arduino('/dev/ttyACM0')
+	board = Arduino('/dev/ttyACM0')
 	print("Success")
 
 	echo = board.get_pin('d:11:i')
