@@ -1,5 +1,6 @@
 //Libraries
 #include <Servo.h>
+#include <ros.h>
 
 //Motor Controller Variables
 #define enAR 4
@@ -10,7 +11,6 @@
 #define in1L 8
 #define in2L 9
 
-
 //Motor Encoder Variables
 #define ENCA_R 12
 #define ENCB_R 13
@@ -19,7 +19,6 @@ int motorPosR = 0;
 #define ENCA_L 10
 #define ENCB_L 11
 int motorPosL = 0;
-
 
 //Servo Variables
 #define servPin A0
@@ -102,6 +101,39 @@ void loop() {
 
 }
 
+//Motor Controller Functions
+void directionControl() {
+  //Set Max Speed
+  analogWrite(enAR, 255);
+  analogWrite(enAL, 255);
+
+  //Turn Motors On
+  digitalWrite(in1R, HIGH);
+  digitalWrite(in2R, LOW);
+
+  digitalWrite(in1L, HIGH);
+  digitalWrite(in2L, LOW);
+  delay(2000);
+
+  //Change Direction 
+  digitalWrite(in1R, LOW);
+  digitalWrite(in2R, HIGH);
+
+  digitalWrite(in1L, LOW);
+  digitalWrite(in2L, HIGH);
+  delay(2000);
+
+  //Turn Off
+  digitalWrite(in1R, LOW);
+  digitalWrite(in2R, LOW);
+
+  digitalWrite(in1L, LOW);
+  digitalWrite(in2L, LOW);
+
+}
+
+
+//Encoder Functions
 void readEncoderR(){
   int b = digitalRead(ENCB_R);
   if (b>0) {
