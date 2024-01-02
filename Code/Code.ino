@@ -1,23 +1,61 @@
+//Libraries
 #include <Servo.h>
 
+//Motor Encoder Variables
+#define ENCA_R 12
+#define ENCB_R 13
+#define ENCA_L 10
+#define ENCB_L 11
+int motorPosR = 0;
+int motorPosL = 0;
+
+
+//Servo Variables
 Servo myservo;
+const int servPin = 3;
+int servPos = 0;
 
-int pos = 0;    // variable to store the servo position
-
-// defines pins numbers
+//Ultrasonic Sensor Variables
 const int trigPin = 9;
 const int echoPin = 10;
-// defines variables
 long duration;
 int distance;
-void setup() {
-  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-  Serial.begin(9600); // Starts the serial communication
 
-  myservo.attach(3);  // attaches the servo on pin 9 to the servo object
+//Setup
+void setup() {
+
+  //Motor Encoder Setup
+  pinMode(ENCA_R, INPUT);
+  pinMode(ENCB_R, INPUT);
+  pinMode(ENCA_L, INPUT);
+  pinMode(ENCB_L, INPUT);
+
+
+  //Servo Setup
+  myservo.attach(servPin);
+
+  //Ultrasonic Sensor Setup
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  //Serial Communication
+  Serial.begin(9600);
 }
 void loop() {
+
+  //Servo Test Code
+  for (servPos = 0; servPos <= 180; servPos += 1) {
+    myservo.write(servPos);
+    Serial.println(servPos);
+    delay(15);
+  }
+  for (servPos = 180; servPos >= 0; servPos -= 1) { 
+    myservo.write(servPos);
+    Serial.println(servPos);
+    delay(15);
+  }
+
+  //Ultrasonic Sensor Test Code
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -34,13 +72,5 @@ void loop() {
   Serial.println(distance);
 
 
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
-  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
+
 }
