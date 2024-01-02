@@ -1,6 +1,7 @@
 //Libraries
 #include <Servo.h>
 #include <ros.h>
+#include <PID_v1.h>
 
 //Motor Controller Variables
 #define enAR 4
@@ -15,10 +16,16 @@
 #define ENCA_R 12
 #define ENCB_R 13
 int motorPosR = 0;
+long prevTR = 0;
+float eprevR = 0;
+float eintegralR = 0;
 
 #define ENCA_L 10
 #define ENCB_L 11
 int motorPosL = 0;
+long prevTL = 0;
+float eprevL = 0;
+float eintegralL = 0;
 
 //Servo Variables
 #define servPin A0
@@ -68,7 +75,8 @@ void setup() {
 void loop() {
   
   //Motor Controller Test Code
-
+  setMotor(1, 25, enAR, in1R, in2R);
+  setMotor(1, 25, enAL, in1L, in2L);
 
   //Motor Encoder Test Code
   Serial.println(motorPosR);
@@ -76,8 +84,10 @@ void loop() {
 
   //Servo Test Code
   setServo(180, 15);
+  Serial.println(servPos);
   setServo(0, 15);
-
+  Serial.println(servPos);
+  
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
@@ -149,5 +159,4 @@ void setServo (int angle, int stepDelay) {
     }
   }
   servPos = angle;
-  Serial.println(servPos);
 }
