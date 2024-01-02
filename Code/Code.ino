@@ -66,22 +66,17 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
+  
+  //Motor Controller Test Code
+
 
   //Motor Encoder Test Code
   Serial.println(motorPosR);
   Serial.println(motorPosL);
 
   //Servo Test Code
-  for (servPos = 0; servPos <= 180; servPos += 1) {
-    myservo.write(servPos);
-    Serial.println(servPos);
-    delay(15);
-  }
-  for (servPos = 180; servPos >= 0; servPos -= 1) { 
-    myservo.write(servPos);
-    Serial.println(servPos);
-    delay(15);
-  }
+  setServo(180, 15);
+  setServo(0, 15);
 
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
@@ -102,36 +97,21 @@ void loop() {
 }
 
 //Motor Controller Functions
-void directionControl() {
-  //Set Max Speed
-  analogWrite(enAR, 255);
-  analogWrite(enAL, 255);
-
-  //Turn Motors On
-  digitalWrite(in1R, HIGH);
-  digitalWrite(in2R, LOW);
-
-  digitalWrite(in1L, HIGH);
-  digitalWrite(in2L, LOW);
-  delay(2000);
-
-  //Change Direction 
-  digitalWrite(in1R, LOW);
-  digitalWrite(in2R, HIGH);
-
-  digitalWrite(in1L, LOW);
-  digitalWrite(in2L, HIGH);
-  delay(2000);
-
-  //Turn Off
-  digitalWrite(in1R, LOW);
-  digitalWrite(in2R, LOW);
-
-  digitalWrite(in1L, LOW);
-  digitalWrite(in2L, LOW);
-
+void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
+  analogWrite(pwm, pwmVal);
+  if (dir == 1) {
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+  }
+  else if (dir == -1) {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+  }
+  else {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+  }
 }
-
 
 //Encoder Functions
 void readEncoderR(){
@@ -152,4 +132,22 @@ void readEncoderL() {
   else {
     motorPosL--;
   }
+}
+
+//Servo Functions
+void setServo (int angle, int stepDelay) {
+  if (angle > servPos) {
+    for (int i = servPos; i <= angle; i++) {
+      myservo.write(i);
+      delay(stepDelay);
+    }
+  }
+  else if (angle < servPos) {
+    for (int i = servPos; i >= angle; i--) {
+      myservo.write(i);
+      delay(stepDelay);
+    }
+  }
+  servPos = angle;
+  Serial.println(servPos);
 }
