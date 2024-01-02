@@ -72,6 +72,7 @@ void setup() {
   //Serial Communication
   Serial.begin(9600);
 }
+
 void loop() {
   
   //Motor Controller Test Code
@@ -87,7 +88,7 @@ void loop() {
   Serial.println(servPos);
   setServo(0, 15);
   Serial.println(servPos);
-  
+
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
