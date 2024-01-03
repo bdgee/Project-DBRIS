@@ -16,16 +16,10 @@
 #define ENCA_R 12
 #define ENCB_R 13
 int motorPosR = 0;
-long prevTR = 0;
-float eprevR = 0;
-float eintegralR = 0;
 
 #define ENCA_L 10
 #define ENCB_L 11
 int motorPosL = 0;
-long prevTL = 0;
-float eprevL = 0;
-float eintegralL = 0;
 
 //Servo Variables
 #define servPin A0
