@@ -84,9 +84,9 @@ void loop() {
   Serial.println(motorPosL);
 
   //Servo Test Code
-  setServo(90, 15);
+  setServo(120, 15);
   Serial.println(servPos);
-  
+
   setServo(0, 15);
   Serial.println(servPos);
 
