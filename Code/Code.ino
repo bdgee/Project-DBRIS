@@ -16,16 +16,10 @@
 #define ENCA_R 12
 #define ENCB_R 13
 int motorPosR = 0;
-long prevTR = 0;
-float eprevR = 0;
-float eintegralR = 0;
 
 #define ENCA_L 10
 #define ENCB_L 11
 int motorPosL = 0;
-long prevTL = 0;
-float eprevL = 0;
-float eintegralL = 0;
 
 //Servo Variables
 #define servPin A0
@@ -84,12 +78,9 @@ void loop() {
   Serial.println(motorPosL);
 
   //Servo Test Code
-<<<<<<< HEAD
-  setServo(90, 15);
-=======
   setServo(120, 15);
->>>>>>> b68308d7cdc0f9f0ef145103521f1243629c61ab
   Serial.println(servPos);
+
   setServo(0, 15);
   Serial.println(servPos);
 
