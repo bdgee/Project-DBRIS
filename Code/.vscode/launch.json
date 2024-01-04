@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/School/Extra learning/Project-DBRIS/Code",
-      "program": "d:/School/Extra learning/Project-DBRIS/Code/build/Debug/outDebug",
+      "cwd": "/home/bdgee/Project-DBRIS/Code",
+      "program": "/home/bdgee/Project-DBRIS/Code/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
