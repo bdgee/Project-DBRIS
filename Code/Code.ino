@@ -1,9 +1,5 @@
 //Libraries
 #include <Servo.h>
-<<<<<<< HEAD
-=======
-#include <PID_v1.h>
->>>>>>> db227bf8630c518d6b319f464854d0ddb49b1abb
 
 //Motor Controller Variables
 #define enAR 4
