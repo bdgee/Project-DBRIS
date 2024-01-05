@@ -1,5 +1,9 @@
 //Libraries
 #include <Servo.h>
+<<<<<<< HEAD
+=======
+#include <PID_v1.h>
+>>>>>>> db227bf8630c518d6b319f464854d0ddb49b1abb
 
 //Motor Controller Variables
 #define enAR 4
@@ -68,8 +72,8 @@ void setup() {
 void loop() {
   
   //Motor Controller Test Code
-  setMotor(1, 25, enAR, in1R, in2R);
-  setMotor(1, 25, enAL, in1L, in2L);
+  setMotor(1, 255, enAR, in1R, in2R);
+  setMotor(1, 255, enAL, in1L, in2L);
 
   //Motor Encoder Test Code
   Serial.println(motorPosR);
