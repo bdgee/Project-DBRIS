@@ -1,7 +1,5 @@
 //Libraries
 #include <Servo.h>
-#include <ros.h>
-#include <PID_v1.h>
 
 //Motor Controller Variables
 #define enAR 4
@@ -53,8 +51,8 @@ void setup() {
   pinMode(ENCB_R, INPUT);
   pinMode(ENCA_L, INPUT);
   pinMode(ENCB_L, INPUT);
-  attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
-  attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
 
   //Servo Setup
   myservo.attach(servPin);

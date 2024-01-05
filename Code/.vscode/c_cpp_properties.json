@@ -34,8 +34,6 @@
                 "/home/bdgee/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
                 "/home/bdgee/.arduino15/packages/arduino/hardware/avr/1.8.6/variants/standard",
                 "/home/bdgee/Arduino/libraries/Servo/src",
-                "/home/bdgee/Arduino/libraries/Rosserial_Arduino_Library/src",
-                "/home/bdgee/Arduino/libraries/PID",
                 "/home/bdgee/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/home/bdgee/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "/home/bdgee/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
@@ -553,14 +551,16 @@
         },
         {
             "name": "Linux",
+            "compilerPath": "/usr/bin/gcc",
+            "compilerArgs": [],
+            "intelliSenseMode": "linux-gcc-arm64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "forcedInclude": [],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
-            "intelliSenseMode": "linux-gcc-arm64"
+            "defines": []
         }
     ]
 }
