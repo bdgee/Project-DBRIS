@@ -1,6 +1,5 @@
 //Libraries
 #include <Servo.h>
-#include <ros.h>
 #include <PID_v1.h>
 
 //Motor Controller Variables
@@ -53,8 +52,8 @@ void setup() {
   pinMode(ENCB_R, INPUT);
   pinMode(ENCA_L, INPUT);
   pinMode(ENCB_L, INPUT);
-  attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
-  attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
 
   //Servo Setup
   myservo.attach(servPin);
@@ -70,8 +69,8 @@ void setup() {
 void loop() {
   
   //Motor Controller Test Code
-  setMotor(1, 25, enAR, in1R, in2R);
-  setMotor(1, 25, enAL, in1L, in2L);
+  setMotor(1, 255, enAR, in1R, in2R);
+  setMotor(1, 255, enAL, in1L, in2L);
 
   //Motor Encoder Test Code
   Serial.println(motorPosR);
