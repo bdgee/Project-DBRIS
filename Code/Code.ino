@@ -68,19 +68,15 @@ void setup() {
 void loop() {
   
   //Motor Controller Test Code
-  setMotor(1, 255, enAR, in1R, in2R);
-  setMotor(1, 255, enAL, in1L, in2L);
+  setMotor(1, 200, enAR, in1R, in2R);
+  setMotor(1, 200, enAL, in1L, in2L);
 
   //Motor Encoder Test Code
   Serial.println(motorPosR);
   Serial.println(motorPosL);
 
   //Servo Test Code
-  setServo(120, 15);
-  Serial.println(servPos);
 
-  setServo(0, 15);
-  Serial.println(servPos);
 
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
@@ -97,6 +93,8 @@ void loop() {
   // Prints the distance on the Serial Monitor
   Serial.print("Distance: ");
   Serial.println(distance);
+
+  delay(100);
 
 }
 
@@ -136,21 +134,4 @@ void readEncoderL() {
   else {
     motorPosL--;
   }
-}
-
-//Servo Functions
-void setServo (int angle, int stepDelay) {
-  if (angle > servPos) {
-    for (int i = servPos; i <= angle; i++) {
-      myservo.write(i);
-      delay(stepDelay);
-    }
-  }
-  else if (angle < servPos) {
-    for (int i = servPos; i >= angle; i--) {
-      myservo.write(i);
-      delay(stepDelay);
-    }
-  }
-  servPos = angle;
 }
