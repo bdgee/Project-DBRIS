@@ -71,7 +71,7 @@ void loop() {
   setMotor(1, 200, enAR, in1R, in2R);
   setMotor(1, 200, enAL, in1L, in2L);
 
-  //Motor Encoder Test Code
+  //Motor Encoder Test Code (no work)
   Serial.println(motorPosL);
   Serial.println(motorPosR);
 
