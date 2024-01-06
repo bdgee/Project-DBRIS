@@ -2,13 +2,13 @@
 #include <Servo.h>
 
 //Motor Controller Variables
-#define enAR 4
-#define in1R 5
-#define in2R 6
+#define in1R 4
+#define in2R 5
+#define enAR 6
 
-#define enAL 7
-#define in1L 8
-#define in2L 9
+#define in1L 7
+#define in2L 8
+#define enAL 9
 
 //Motor Encoder Variables
 #define ENCA_R 12
