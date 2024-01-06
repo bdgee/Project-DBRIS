@@ -51,15 +51,15 @@ void setup() {
   pinMode(ENCB_R, INPUT);
   pinMode(ENCA_L, INPUT);
   pinMode(ENCB_L, INPUT);
-  // attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
-  // attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
 
   //Servo Setup
-  myservo.attach(servPin);
+  // myservo.attach(servPin);
 
-  //Ultrasonic Sensor Setup
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
+  // //Ultrasonic Sensor Setup
+  // pinMode(trigPin, OUTPUT);
+  // pinMode(echoPin, INPUT);
 
   //Serial Communication
   Serial.begin(9600);
@@ -72,29 +72,27 @@ void loop() {
   setMotor(1, 200, enAL, in1L, in2L);
 
   //Motor Encoder Test Code
-  Serial.println(motorPosR);
   Serial.println(motorPosL);
+  Serial.println(motorPosR);
 
   //Servo Test Code
 
 
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(echoPin, HIGH);
-  // Calculating the distance
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.println(distance);
-
-  delay(100);
+  // digitalWrite(trigPin, LOW);
+  // delayMicroseconds(2);
+  // // Sets the trigPin on HIGH state for 10 micro seconds
+  // digitalWrite(trigPin, HIGH);
+  // delayMicroseconds(10);
+  // digitalWrite(trigPin, LOW);
+  // // Reads the echoPin, returns the sound wave travel time in microseconds
+  // duration = pulseIn(echoPin, HIGH);
+  // // Calculating the distance
+  // distance = duration * 0.034 / 2;
+  // // Prints the distance on the Serial Monitor
+  // Serial.print("Distance: ");
+  // Serial.println(distance);
 
 }
 
@@ -115,7 +113,7 @@ void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
   }
 }
 
-//Encoder Functions
+// //Encoder Functions
 void readEncoderR(){
   int b = digitalRead(ENCB_R);
   if (b>0) {
