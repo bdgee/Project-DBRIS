@@ -1,5 +1,6 @@
 //Libraries
 #include <Servo.h>
+#include <util/atomic.h>
 
 //Motor Controller Variables
 #define in1R 4
@@ -11,12 +12,14 @@
 #define enAL 9
 
 //Motor Encoder Variables
-#define ENCA_R 12
-#define ENCB_R 13
+#define ENCA_R 10
+#define ENCB_R 11
+volatile int posiR = 0;
 int motorPosR = 0;
 
-#define ENCA_L 10
-#define ENCB_L 11
+#define ENCA_L 12
+#define ENCB_L 13
+volatile int posiL = 0;
 int motorPosL = 0;
 
 //Servo Variables
@@ -72,27 +75,32 @@ void loop() {
   setMotor(1, 200, enAL, in1L, in2L);
 
   //Motor Encoder Test Code (no work)
-  Serial.println(motorPosL);
+  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+    motorPosR = posiR;
+    motorPosL = posiL;
+  }
+
   Serial.println(motorPosR);
+  Serial.println(motorPosL);
 
   //Servo Test Code
 
 
   //Ultrasonic Sensor Test Code
   // Clears the trigPin
-  // digitalWrite(trigPin, LOW);
-  // delayMicroseconds(2);
-  // // Sets the trigPin on HIGH state for 10 micro seconds
-  // digitalWrite(trigPin, HIGH);
-  // delayMicroseconds(10);
-  // digitalWrite(trigPin, LOW);
-  // // Reads the echoPin, returns the sound wave travel time in microseconds
-  // duration = pulseIn(echoPin, HIGH);
-  // // Calculating the distance
-  // distance = duration * 0.034 / 2;
-  // // Prints the distance on the Serial Monitor
-  // Serial.print("Distance: ");
-  // Serial.println(distance);
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+  // Calculating the distance
+  distance = duration * 0.034 / 2;
+  // Prints the distance on the Serial Monitor
+  Serial.print("Distance: ");
+  Serial.println(distance);
 
 }
 
