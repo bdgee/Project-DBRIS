@@ -16,16 +16,18 @@
 
 //Motor Encoder Variables
 //Has to be interrupt pin
-#define ENCA_R 10
-#define ENCB_R 11
-volatile int posiR = 0;
-int motorPosR = 0;
+Encoder rightEnc(2, 10);
+// #define ENCA_R 10
+// #define ENCB_R 11
+// volatile int posiR = 0;
+long motorPosR = 0;
 
 //Has to be interrupt pin
-#define ENCA_L 12
-#define ENCB_L 13
-volatile int posiL = 0;
-int motorPosL = 0;
+Encoder leftEnc(3, 11);
+// #define ENCA_L 12
+// #define ENCB_L 13
+// volatile int posiL = 0;
+long motorPosL = 0;
 
 //Servo Variables
 #define servPin A0
@@ -57,13 +59,13 @@ void setup() {
   digitalWrite(in1L, LOW);
   digitalWrite(in2L, LOW);
 
-  //Motor Encoder Setup
-  pinMode(ENCA_R, INPUT);
-  pinMode(ENCB_R, INPUT);
-  pinMode(ENCA_L, INPUT);
-  pinMode(ENCB_L, INPUT);
-  attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
-  attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
+  // //Motor Encoder Setup
+  // pinMode(ENCA_R, INPUT);
+  // pinMode(ENCB_R, INPUT);
+  // pinMode(ENCA_L, INPUT);
+  // pinMode(ENCB_L, INPUT);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
+  // attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
 
   //Servo Setup
   myservo.attach(servPin);
@@ -83,14 +85,15 @@ void loop() {
   setMotor(1, 200, enAR, in1R, in2R);
   setMotor(1, 200, enAL, in1L, in2L);
 
-  //Motor Encoder Test Code (no work)
-  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
-    motorPosR = posiR;
-    motorPosL = posiL;
-  }
+  //Motor Encoder Test Code 
+  long newRight, newLeft;
+  newRight = rightEnc.read();
+  newLeft = leftEnc.read();
 
-  Serial.println(motorPosR);
-  Serial.println(motorPosL);
+  if (newLeft != motorPosL || newRight != motorPosR) {
+    motorPosR = newRight;
+    motorPosL = newLeft;
+  }
 
   //Servo Test Code
   servPos =  (servPos+1)%120;
@@ -128,23 +131,23 @@ void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
   }
 }
 
-// //Encoder Functions
-void readEncoderR(){
-  int b = digitalRead(ENCB_R);
-  if (b>0) {
-    motorPosR++;
-  }
-  else{
-    motorPosR--;
-  }
-}
+// // //Encoder Functions
+// void readEncoderR(){
+//   int b = digitalRead(ENCB_R);
+//   if (b>0) {
+//     motorPosR++;
+//   }
+//   else{
+//     motorPosR--;
+//   }
+// }
 
-void readEncoderL() {
-  int b = digitalRead(ENCB_L);
-  if (b>0) {
-    motorPosL++;
-  }
-  else {
-    motorPosL--;
-  }
-}
+// void readEncoderL() {
+//   int b = digitalRead(ENCB_L);
+//   if (b>0) {
+//     motorPosL++;
+//   }
+//   else {
+//     motorPosL--;
+//   }
+// }
