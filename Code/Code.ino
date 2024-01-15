@@ -1,22 +1,27 @@
 //Libraries
 #include <Servo.h>
 #include <util/atomic.h>
+#include <Encoder.h>
 
 //Motor Controller Variables
 #define in1R 4
 #define in2R 5
+//Has to be PWM pin
 #define enAR 6
 
 #define in1L 7
 #define in2L 8
+//Has to be PWM pin
 #define enAL 9
 
 //Motor Encoder Variables
+//Has to be interrupt pin
 #define ENCA_R 10
 #define ENCB_R 11
 volatile int posiR = 0;
 int motorPosR = 0;
 
+//Has to be interrupt pin
 #define ENCA_L 12
 #define ENCB_L 13
 volatile int posiL = 0;
@@ -32,6 +37,9 @@ int servPos = 0;
 #define echoPin 3
 long duration;
 int distance;
+
+//Output to the serial Monitor
+String data[3];
 
 //Setup
 void setup() {
@@ -58,14 +66,15 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
 
   //Servo Setup
-  // myservo.attach(servPin);
+  myservo.attach(servPin);
+  myservo.write(servPos);
 
   // //Ultrasonic Sensor Setup
-  // pinMode(trigPin, OUTPUT);
-  // pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 
   //Serial Communication
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -84,10 +93,10 @@ void loop() {
   Serial.println(motorPosL);
 
   //Servo Test Code
-
+  servPos =  (servPos+1)%120;
+  myservo.write(servPos);
 
   //Ultrasonic Sensor Test Code
-  // Clears the trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   // Sets the trigPin on HIGH state for 10 micro seconds
@@ -99,9 +108,7 @@ void loop() {
   // Calculating the distance
   distance = duration * 0.034 / 2;
   // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.println(distance);
-
+  Serial.print("Distance: " + String(distance));
 }
 
 //Motor Controller Functions
