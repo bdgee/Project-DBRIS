@@ -9,10 +9,10 @@
 //Has to be PWM pin
 #define enAR 6
 
-#define in1L 7
-#define in2L 8
+#define in1L 8
+#define in2L 9
 //Has to be PWM pin
-#define enAL 9
+#define enAL 7
 
 //Motor Encoder Variables
 //Has to be interrupt pin
@@ -35,8 +35,8 @@ Servo myservo;
 int servPos = 0;
 
 //Ultrasonic Sensor Variables
-#define trigPin 2
-#define echoPin 3
+#define trigPin 12
+#define echoPin 13
 long duration;
 int distance;
 
@@ -71,7 +71,7 @@ void setup() {
   myservo.attach(servPin);
   myservo.write(servPos);
 
-  // //Ultrasonic Sensor Setup
+  //Ultrasonic Sensor Setup
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
@@ -95,6 +95,9 @@ void loop() {
     motorPosL = newLeft;
   }
 
+  Serial.println(motorPosR);
+  Serial.println(motorPosL);
+
   //Servo Test Code
   servPos =  (servPos+1)%120;
   myservo.write(servPos);
@@ -111,7 +114,7 @@ void loop() {
   // Calculating the distance
   distance = duration * 0.034 / 2;
   // Prints the distance on the Serial Monitor
-  Serial.print("Distance: " + String(distance));
+  Serial.println("Distance: " + String(distance));
 }
 
 //Motor Controller Functions
