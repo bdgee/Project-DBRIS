@@ -15,18 +15,17 @@
 #define enAL 7
 
 //Motor Encoder Variables
-//Has to be interrupt pin
-Encoder rightEnc(2, 10);
-// #define ENCA_R 10
-// #define ENCB_R 11
-// volatile int posiR = 0;
+//Has to have some interrupt pins (2,3)
+
+#define ENCA_R 2
+#define ENCB_R 10
+Encoder rightEnc(ENCA_R, ENCB_R);
 long motorPosR = 0;
 
-//Has to be interrupt pin
-Encoder leftEnc(3, 11);
-// #define ENCA_L 12
-// #define ENCB_L 13
-// volatile int posiL = 0;
+
+#define ENCA_L 3
+#define ENCB_L 11
+Encoder leftEnc(ENCA_L, ENCB_L);
 long motorPosL = 0;
 
 //Servo Variables
@@ -59,14 +58,6 @@ void setup() {
   digitalWrite(in1L, LOW);
   digitalWrite(in2L, LOW);
 
-  // //Motor Encoder Setup
-  // pinMode(ENCA_R, INPUT);
-  // pinMode(ENCB_R, INPUT);
-  // pinMode(ENCA_L, INPUT);
-  // pinMode(ENCB_L, INPUT);
-  // attachInterrupt(digitalPinToInterrupt(ENCA_R), readEncoderR, RISING);
-  // attachInterrupt(digitalPinToInterrupt(ENCA_L), readEncoderL, RISING);
-
   //Servo Setup
   myservo.attach(servPin);
   myservo.write(servPos);
@@ -77,10 +68,16 @@ void setup() {
 
   //Serial Communication
   Serial.begin(115200);
+  while(!Serial) {}
 }
 
 void loop() {
   
+  //Checks for commands in serail monitor
+  if (Serial.available()>0) {
+    String commands = Serial.readStringUntil('\n');
+  }
+
   //Motor Controller Test Code
   setMotor(1, 200, enAR, in1R, in2R);
   setMotor(1, 200, enAL, in1L, in2L);
@@ -133,24 +130,3 @@ void setMotor(int dir, int pwmVal, int pwm, int in1, int in2){
     digitalWrite(in2, LOW);
   }
 }
-
-// // //Encoder Functions
-// void readEncoderR(){
-//   int b = digitalRead(ENCB_R);
-//   if (b>0) {
-//     motorPosR++;
-//   }
-//   else{
-//     motorPosR--;
-//   }
-// }
-
-// void readEncoderL() {
-//   int b = digitalRead(ENCB_L);
-//   if (b>0) {
-//     motorPosL++;
-//   }
-//   else {
-//     motorPosL--;
-//   }
-// }
