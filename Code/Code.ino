@@ -22,7 +22,6 @@
 Encoder rightEnc(ENCA_R, ENCB_R);
 long motorPosR = 0;
 
-
 #define ENCA_L 3
 #define ENCB_L 11
 Encoder leftEnc(ENCA_L, ENCB_L);
