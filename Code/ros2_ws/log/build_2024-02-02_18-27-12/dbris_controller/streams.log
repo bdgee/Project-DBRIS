@@ -1,0 +1,17 @@
+[0.823s] Invoking command in '/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller': PYTHONPATH=/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/prefix_override:/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/build --no-deps install_data
+[1.081s] running develop
+[1.228s] running egg_info
+[1.228s] writing dbris_controller.egg-info/PKG-INFO
+[1.229s] writing dependency_links to dbris_controller.egg-info/dependency_links.txt
+[1.229s] writing entry points to dbris_controller.egg-info/entry_points.txt
+[1.230s] writing requirements to dbris_controller.egg-info/requires.txt
+[1.230s] writing top-level names to dbris_controller.egg-info/top_level.txt
+[1.232s] reading manifest file 'dbris_controller.egg-info/SOURCES.txt'
+[1.233s] writing manifest file 'dbris_controller.egg-info/SOURCES.txt'
+[1.234s] running build_ext
+[1.234s] Creating /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages/dbris-controller.egg-link (link to .)
+[1.235s] Installing test_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+[1.236s] 
+[1.236s] Installed /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller
+[1.236s] running install_data
+[1.281s] Invoked command in '/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller' returned '0': PYTHONPATH=/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/prefix_override:/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/build --no-deps install_data
