@@ -9,7 +9,9 @@ setup.py
 ../../build/dbris_controller/dbris_controller.egg-info/top_level.txt
 ../../build/dbris_controller/dbris_controller.egg-info/zip-safe
 dbris_controller/__init__.py
+dbris_controller/ard.py
 dbris_controller/my_first_node.py
+dbris_controller/rasp_pi.py
 dbris_controller.egg-info/PKG-INFO
 dbris_controller.egg-info/SOURCES.txt
 dbris_controller.egg-info/dependency_links.txt
