@@ -20,7 +20,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "test_node = dbris_controller.my_first_node:main",
             "raspi_node = dbris_controller.raspi_node:main",
             "ard_node = dbris_controller.ard_node:main"
         ],
