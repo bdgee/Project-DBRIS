@@ -1,0 +1,19 @@
+[1.137s] Invoking command in '/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller': PYTHONPATH=/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/prefix_override:/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/build --no-deps install_data
+[1.502s] running develop
+[1.712s] running egg_info
+[1.713s] writing dbris_controller.egg-info/PKG-INFO
+[1.713s] writing dependency_links to dbris_controller.egg-info/dependency_links.txt
+[1.713s] writing entry points to dbris_controller.egg-info/entry_points.txt
+[1.713s] writing requirements to dbris_controller.egg-info/requires.txt
+[1.713s] writing top-level names to dbris_controller.egg-info/top_level.txt
+[1.716s] reading manifest file 'dbris_controller.egg-info/SOURCES.txt'
+[1.718s] writing manifest file 'dbris_controller.egg-info/SOURCES.txt'
+[1.720s] running build_ext
+[1.720s] Creating /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages/dbris-controller.egg-link (link to .)
+[1.721s] Installing ard_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+[1.722s] Installing raspi_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+[1.722s] Installing test_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+[1.722s] 
+[1.722s] Installed /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller
+[1.722s] running install_data
+[1.780s] Invoked command in '/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller' returned '0': PYTHONPATH=/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/prefix_override:/home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller/build --no-deps install_data

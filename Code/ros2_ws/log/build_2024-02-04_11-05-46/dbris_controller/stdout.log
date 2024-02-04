@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing dbris_controller.egg-info/PKG-INFO
+writing dependency_links to dbris_controller.egg-info/dependency_links.txt
+writing entry points to dbris_controller.egg-info/entry_points.txt
+writing requirements to dbris_controller.egg-info/requires.txt
+writing top-level names to dbris_controller.egg-info/top_level.txt
+reading manifest file 'dbris_controller.egg-info/SOURCES.txt'
+writing manifest file 'dbris_controller.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/python3.10/site-packages/dbris-controller.egg-link (link to .)
+Installing ard_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+Installing raspi_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+Installing test_node script to /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/install/dbris_controller/lib/dbris_controller
+
+Installed /home/o-gee/Documents/Project-DBRIS/Code/ros2_ws/build/dbris_controller
+running install_data
