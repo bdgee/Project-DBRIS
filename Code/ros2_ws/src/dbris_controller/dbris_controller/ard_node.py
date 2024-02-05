@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float64MultiArray
-
+from std_msgs.msg import *
 class ArdNode(Node):
 
     def __init__(self):
@@ -14,10 +13,11 @@ class ArdNode(Node):
 
         #Publishers
         self.motor_pos_pub_ = self.create_publisher(Float64MultiArray, "motor_pos", 10)
-        self.servo_pos_pub_ = self.create_publisher(float, "servo_pos", 10)
+        self.servo_pos_pub_ = self.create_publisher(Float64, "servo_pos", 10)
+        self.sensor_dist_pub_ = self.create_publisher(Float64, "sensor_dist", 10)
         
 
-        self.timer_ = self.create_timer(1.0/5.0, self.pub_motor_pos,)
+        self.timer_ = self.create_timer(1.0/5.0, self.pub_motor_pos)
     
     def pub_motor_pos(self):
         msg = Float64MultiArray()
@@ -27,9 +27,14 @@ class ArdNode(Node):
         self.motor_pos_pub_.publish(msg)
     
     def pub_servo_pos(self):
-        msg = float()
+        msg = Float64()
         msg = 1.0
         self.servo_pos_pub_.publish(msg)
+    
+    def pub_sensor_dist(self):
+        msg = Float64()
+        msg = 1.0
+        self.sensor_dist_pub_.publish(msg)
 
     def sub_robot_dir(self, msg:Float64MultiArray):
         self.get_logger().info(str(msg))
