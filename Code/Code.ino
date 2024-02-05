@@ -2,6 +2,7 @@
 #include <Servo.h>
 #include <util/atomic.h>
 #include <Encoder.h>
+#include <NewPing.h>
 
 //Motor Controller Variables
 #define in1R 4
@@ -35,8 +36,11 @@ int servPos = 0;
 //Ultrasonic Sensor Variables
 #define trigPin 12
 #define echoPin 13
-long duration;
-int distance;
+#define maxDistance 100
+// long duration;
+// int distance;
+
+NewPing sonar(trigPin, echoPin, maxDistance);
 
 //Output to the serial Monitor
 String data[3];
@@ -62,8 +66,8 @@ void setup() {
   myservo.write(servPos);
 
   //Ultrasonic Sensor Setup
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
+  // pinMode(trigPin, OUTPUT);
+  // pinMode(echoPin, INPUT);
 
   //Serial Communication
   Serial.begin(115200);
@@ -71,6 +75,7 @@ void setup() {
 }
 
 void loop() {
+  delay(50);
   
   //Checks for commands in serail monitor
   if (Serial.available()>0) {
@@ -98,19 +103,23 @@ void loop() {
   servPos =  (servPos+1)%120;
   myservo.write(servPos);
 
-  //Ultrasonic Sensor Test Code
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(echoPin, HIGH);
-  // Calculating the distance
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  Serial.println("Distance: " + String(distance));
+  // //Ultrasonic Sensor Test Code
+  // digitalWrite(trigPin, LOW);
+  // delayMicroseconds(2);
+  // // Sets the trigPin on HIGH state for 10 micro seconds
+  // digitalWrite(trigPin, HIGH);
+  // delayMicroseconds(10);
+  // digitalWrite(trigPin, LOW);
+  // // Reads the echoPin, returns the sound wave travel time in microseconds
+  // duration = pulseIn(echoPin, HIGH);
+  // // Calculating the distance
+  // distance = duration * 0.034 / 2;
+
+  unsigned int uS = sonar.ping();
+  Serial.println(sonar.convert_cm(uS));
+  
+  //Prints data to serial monitor
+  //Serial.println(data);
 }
 
 //Motor Controller Functions
