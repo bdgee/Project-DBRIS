@@ -3,6 +3,8 @@
 #include <util/atomic.h>
 #include <Encoder.h>
 #include <NewPing.h>
+#include <Wire.h>
+#include <MPU6050_tockn.h>
 
 //Motor Controller Variables
 #define in1R 4
@@ -40,6 +42,10 @@ int servPos = 0;
 // long duration;
 // int distance;
 
+//Accelerometer Variables
+MPU6050_tockn mpu6050(Wire);
+long timer = 0;
+
 NewPing sonar(trigPin, echoPin, maxDistance);
 
 //Output to the serial Monitor
@@ -68,6 +74,11 @@ void setup() {
   //Ultrasonic Sensor Setup
   // pinMode(trigPin, OUTPUT);
   // pinMode(echoPin, INPUT);
+
+  //Accelerometer
+  Wire.begin();
+  mpu6050.begin();
+  mpu6050.calcGyroOffsets(true);
 
   //Serial Communication
   Serial.begin(115200);
@@ -120,6 +131,34 @@ void loop() {
   
   //Prints data to serial monitor
   //Serial.println(data);
+
+  mpu6050.update();
+
+  if(millis() - timer > 1000){
+    
+    Serial.println("=======================================================");
+    Serial.print("temp : ");Serial.println(mpu6050.getTemp());
+    Serial.print("accX : ");Serial.print(mpu6050.getAccX());
+    Serial.print("	accY : ");Serial.print(mpu6050.getAccY());
+    Serial.print("	accZ : ");Serial.println(mpu6050.getAccZ());
+  
+    Serial.print("gyroX : ");Serial.print(mpu6050.getGyroX());
+    Serial.print("	gyroY : ");Serial.print(mpu6050.getGyroY());
+    Serial.print("	gyroZ : ");Serial.println(mpu6050.getGyroZ());
+  
+    Serial.print("accAngleX : ");Serial.print(mpu6050.getAccAngleX());
+    Serial.print("	accAngleY : ");Serial.println(mpu6050.getAccAngleY());
+  
+    Serial.print("gyroAngleX : ");Serial.print(mpu6050.getGyroAngleX());
+    Serial.print("	gyroAngleY : ");Serial.print(mpu6050.getGyroAngleY());
+    Serial.print("	gyroAngleZ : ");Serial.println(mpu6050.getGyroAngleZ());
+    
+    Serial.print("angleX : ");Serial.print(mpu6050.getAngleX());
+    Serial.print("	angleY : ");Serial.print(mpu6050.getAngleY());
+    Serial.print("	angleZ : ");Serial.println(mpu6050.getAngleZ());
+    Serial.println("=======================================================");
+    timer = millis();
+
 }
 
 //Motor Controller Functions
