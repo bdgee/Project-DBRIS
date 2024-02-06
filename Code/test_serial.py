@@ -1,4 +1,4 @@
-import serial.tools.list_ports
+import serial
 import time
 
 serialInst = serial.Serial()
