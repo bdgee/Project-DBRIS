@@ -15,6 +15,7 @@ class RaspiNode(Node):
         
         #Subscribers
         self.motor_pos_sub = self.create_subscription(Float64MultiArray, "motor_pos", self.sub_motor_pos, 10)
+        
 
     def pub_robot_dir (self):
         msg = Float64MultiArray()

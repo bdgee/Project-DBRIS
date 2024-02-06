@@ -18,10 +18,13 @@ class ArdNode(Node):
         self.motor_pos_pub_ = self.create_publisher(Float64MultiArray, "motor_pos", 10)
         self.servo_pos_pub_ = self.create_publisher(Float64, "servo_pos", 10)
         self.sensor_dist_pub_ = self.create_publisher(Float64, "sensor_dist", 10)
+        self.accel_pub_ = self.create_publisher(Float64MultiArray, "accel", 10)
+        self.gyro_pub_ = self.create_publisher(Float64MultiArray, "gyro", 10)
         
 
         self.timer_ = self.create_timer(1.0/5.0, self.pub_motor_pos)
     
+    #Publisher functions
     def pub_motor_pos(self):
         msg = Float64MultiArray()
 
@@ -39,6 +42,7 @@ class ArdNode(Node):
         msg = 1.0
         self.sensor_dist_pub_.publish(msg)
 
+    #Subscriber functions
     def sub_robot_dir(self, msg:Float64MultiArray):
         self.get_logger().info(str(msg))
 
