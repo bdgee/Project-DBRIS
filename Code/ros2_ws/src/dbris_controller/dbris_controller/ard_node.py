@@ -12,38 +12,50 @@ class ArdNode(Node):
         self.get_logger().info("ard_node has been started")
 
         #Subscribers
-        self.dir_sub_ = self.create_subscription(Float64MultiArray, "robot_dir", self.sub_robot_dir, 10)
+        self.dir_sub_ = self.create_subscription(String, "robot_dir", self.sub_robot_dir, 10)
 
         #Publishers
         self.motor_pos_pub_ = self.create_publisher(Float64MultiArray, "motor_pos", 10)
         self.servo_pos_pub_ = self.create_publisher(Float64, "servo_pos", 10)
-        self.sensor_dist_pub_ = self.create_publisher(Float64, "sensor_dist", 10)
+        self.ultra_dist_pub_ = self.create_publisher(Float64, "ultra_dist", 10)
         self.accel_pub_ = self.create_publisher(Float64MultiArray, "accel", 10)
         self.gyro_pub_ = self.create_publisher(Float64MultiArray, "gyro", 10)
         
 
-        self.timer_ = self.create_timer(1.0/5.0, self.pub_motor_pos)
+        self.timer_ = self.create_timer(1.0/5.0, self.pub_all)
     
-    #Publisher functions
-    def pub_motor_pos(self):
-        msg = Float64MultiArray()
+    #Publisher method
+    def pub_all(self):
+        #Replace with serial monitor code later
 
-        #Get the motor position
-        msg.data = [0.0, 0.0]
-        self.motor_pos_pub_.publish(msg)
-    
-    def pub_servo_pos(self):
-        msg = Float64()
-        msg = 1.0
-        self.servo_pos_pub_.publish(msg)
-    
-    def pub_sensor_dist(self):
-        msg = Float64()
-        msg = 1.0
-        self.sensor_dist_pub_.publish(msg)
+        #Motor position
+        motor_pos = Float64MultiArray()
+        motor_pos.data = [0.0, 0.0]
+        self.motor_pos_pub_.publish(motor_pos)
+
+        #Servo
+        servo_pos = Float64()
+        servo_pos.data = 0.0
+        self.servo_pos_pub_.publish(servo_pos)
+
+        #Ultrasonic Sensor
+        ultra_dist = Float64()
+        ultra_dist.data = 1.0
+        self.ultra_dist_pub_.publish(ultra_dist)
+
+        #Accelerometer
+        accel = Float64MultiArray()
+        accel.data = [0.0, 0.0, 0.0]
+        self.accel_pub_.publish(accel)
+
+        #Gyroscope 
+        gyro = Float64MultiArray()
+        gyro.data = [0.0, 0.0, 0.0]
+        self.gyro_pub_.publish(gyro)
+
 
     #Subscriber functions
-    def sub_robot_dir(self, msg:Float64MultiArray):
+    def sub_robot_dir(self, msg:String):
         self.get_logger().info(str(msg))
 
 
